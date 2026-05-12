@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "check": "npm run build && npm test",
-    "test": "node --test dist/*.test.js",
+    "test": "node scripts/run-tests.mjs",
     "lint": "tsc --noEmit",
     "prepare": "npm run build"
   },
