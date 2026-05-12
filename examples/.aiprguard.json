@@ -1,0 +1,13 @@
+{
+  "ignorePaths": [
+    "dist/**",
+    "coverage/**",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock"
+  ],
+  "ruleWeights": {
+    "large-pr": 12,
+    "missing-tests": 20
+  }
+}

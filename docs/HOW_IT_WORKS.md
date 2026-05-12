@@ -31,6 +31,8 @@ Each rule looks for a practical review signal:
 - generated files changed
 - CI changed without documentation context
 
+If a `.aiprguard.json` file exists, the guard applies ignored paths and custom rule weights before scoring.
+
 ## 3. Score the Pull Request
 
 Each finding adds points. The final score maps to:
@@ -47,6 +49,7 @@ The action writes:
 - GitHub step summary
 - optional sticky pull request comment
 - action outputs: `risk-score`, `risk-level`, `findings`
+- optional SARIF report file for code scanning workflows
 
 ## 5. Optionally Block Merge
 

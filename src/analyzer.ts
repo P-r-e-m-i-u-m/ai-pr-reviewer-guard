@@ -1,18 +1,22 @@
+import { applyConfig, applyRuleWeights, loadConfig } from "./config.js";
 import { getDiff } from "./git.js";
 import { analyzeRules } from "./rules.js";
 import type { AnalyzeOptions, ReviewSummary, RiskLevel } from "./types.js";
 
 export function analyzePullRequest(options: AnalyzeOptions = {}): ReviewSummary {
-  const diff = getDiff(options.base, options.head, options.cwd);
-  const findings = analyzeRules(diff.files);
+  const cwd = options.cwd ?? process.cwd();
+  const config = loadConfig(cwd, options.configPath);
+  const diff = getDiff(options.base, options.head, cwd);
+  const files = applyConfig(diff.files, config);
+  const findings = applyRuleWeights(analyzeRules(files), config);
   const score = Math.min(100, findings.reduce((sum, finding) => sum + finding.points, 0));
-  const additions = diff.files.reduce((sum, file) => sum + file.additions, 0);
-  const deletions = diff.files.reduce((sum, file) => sum + file.deletions, 0);
+  const additions = files.reduce((sum, file) => sum + file.additions, 0);
+  const deletions = files.reduce((sum, file) => sum + file.deletions, 0);
 
   return {
     score,
     level: scoreToLevel(score, findings.some((finding) => finding.level === "critical")),
-    changedFiles: diff.files.length,
+    changedFiles: files.length,
     additions,
     deletions,
     findings,

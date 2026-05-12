@@ -15,6 +15,12 @@ inputs:
     description: "Fail the workflow at or above this risk level: low, medium, high, critical, or never."
     required: false
     default: "high"
+  config:
+    description: "Optional path to a .aiprguard.json configuration file."
+    required: false
+  sarif-file:
+    description: "Optional path where a SARIF report should be written."
+    required: false
   comment:
     description: "Post or update a sticky pull request comment."
     required: false

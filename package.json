@@ -1,6 +1,6 @@
 {
   "name": "ai-pr-reviewer-guard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitHub Action and CLI that scores risky AI-assisted pull requests before humans review them.",
   "type": "module",
   "bin": {
@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "check": "npm run build && npm test",
-    "test": "node --test dist/rules.test.js dist/threshold.test.js",
+    "test": "node --test dist/*.test.js",
     "lint": "tsc --noEmit",
     "prepare": "npm run build"
   },

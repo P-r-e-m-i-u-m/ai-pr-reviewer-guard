@@ -29,9 +29,14 @@ export interface AnalyzeOptions {
     base?: string;
     head?: string;
     cwd?: string;
+    configPath?: string;
 }
 export interface GitDiffResult {
     base: string;
     head: string;
     files: ChangedFile[];
+}
+export interface GuardConfig {
+    ignorePaths: string[];
+    ruleWeights: Record<string, number>;
 }
