@@ -1,0 +1,28 @@
+name: "AI PR Reviewer Guard"
+description: "Scores risky AI-assisted pull requests before maintainers spend review time."
+author: "P-r-e-m-i-u-m"
+branding:
+  icon: "shield"
+  color: "blue"
+inputs:
+  base:
+    description: "Base ref, branch, or SHA to compare from."
+    required: false
+  head:
+    description: "Head ref, branch, or SHA to compare to."
+    required: false
+  fail-on:
+    description: "Fail the workflow at or above this risk level: low, medium, high, critical, or never."
+    required: false
+    default: "high"
+  comment:
+    description: "Post or update a sticky pull request comment."
+    required: false
+    default: "true"
+  token:
+    description: "GitHub token used for PR comments."
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: "node20"
+  main: "dist/index.js"

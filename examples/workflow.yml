@@ -1,0 +1,22 @@
+name: AI PR Reviewer Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: P-r-e-m-i-u-m/ai-pr-reviewer-guard@v1
+        with:
+          fail-on: high
+          comment: true

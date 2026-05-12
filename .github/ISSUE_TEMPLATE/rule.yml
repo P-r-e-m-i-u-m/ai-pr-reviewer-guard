@@ -1,0 +1,24 @@
+name: Rule request
+description: Suggest a new deterministic risk rule
+title: "Rule: "
+labels: ["rule", "enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Maintainer problem
+      description: What review risk should this catch?
+    validations:
+      required: true
+  - type: textarea
+    id: signal
+    attributes:
+      label: Deterministic signal
+      description: What exact file path, diff pattern, or metadata should the rule use?
+    validations:
+      required: true
+  - type: textarea
+    id: false-positives
+    attributes:
+      label: False positive risk
+      description: When might this rule be noisy?
